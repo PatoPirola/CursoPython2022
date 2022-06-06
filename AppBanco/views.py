@@ -1,4 +1,6 @@
 from ast import Pass
+from cgitb import html
+from urllib import request
 from django.http import HttpResponse
 from django.shortcuts import render
 from .models import *
@@ -27,7 +29,7 @@ def clientes(request):
             return render(request,"AppBanco/inicio.html")
     else:
         formulario=ClienteForm()
-        return render(request,"AppBanco/clientes.html",{'formulario':formulario})
+    return render(request,"AppBanco/clientes.html",{'formulario':formulario})
 
 def buscar_cliente(request):
     return render(request,"AppBanco/busquedaCliente.html")
@@ -85,13 +87,13 @@ def login_view(request):
             else:
                 # No backend authenticated the credentials       
                 # Return an 'invalid login' error message.
-                print("Login Failed")
-                return render(request,"AppBanco/login.html", {'formulario':formulario})
+                return render(request,"AppBanco/login.html", {'mensaje':"Usuario o clave inválidas"})
 
+        else:
+            return render(request,"AppBanco/inicio.html", {'mensaje':"Formulario Inválido"})
 
-    else:
-        formulario=LoginForm()
-        return render(request,"AppBanco/login.html", {'formulario':formulario})
+    formulario=LoginForm()
+    return render(request, "AppBanco/login.html", {'formulario':formulario})
 
 def register(request):
     if request.method == 'POST':
@@ -110,3 +112,72 @@ def register(request):
 def logout(request):
     logout(request)
     return render(request,"AppBanco/logout.html")
+
+
+def leerclientes(request):
+
+    clientes = Clientes.objects.all() #trae todos los clientes
+    contexto = {"clientes": clientes}
+    return render(request, "AppBanco/leerclientes.html", contexto)
+
+
+def eliminarclientes(request, cliente_nombre):
+
+    clientes = Clientes.objects.get(nombre=cliente_nombre)
+    clientes.delete()
+
+    #vuelvo al menú
+    clientes = Clientes.objects.all() #traigo todos los clientes
+    contexto = {"clientes":clientes}
+
+    return render(request, "AppBanco/inicio.html",contexto)
+
+
+def editarcliente(request, cliente_nombre):
+
+      #Recibe el nombre del cliente que vamos a modificar
+      clientes = Clientes.objects.get(nombre=cliente_nombre)
+
+      #Si es metodo POST hago lo mismo que el agregar
+      if request.method == 'POST':
+
+            formulario = ClienteForm(request.POST) 
+
+            print(formulario)
+
+            if formulario.is_valid:   #Si pasó la validación de Django
+
+                  informacion = formulario.cleaned_data
+
+                  clientes.codigo_cliente = informacion['codigo_cliente']
+                  clientes.nombre = informacion['nombre']
+                  clientes.email = informacion['email']
+                  
+                  clientes.save()
+
+                  clientess=Clientes.objects.all()
+                  contexto={'clientess':clientess}  
+
+                  return render(request, "AppBanco/inicio.html",contexto)  
+      #En caso que no sea post
+      else: 
+            #Creo el formulario con los datos que voy a modificar
+            formulario= ClienteForm(initial={'codigo_cliente': clientes.codigo_cliente, 'nombre':clientes.nombre , 
+            'email':clientes.email}) 
+
+      #Voy al html que me permite editar
+      return render(request, "AppBanco/editarcliente.html", {"formulario":formulario, "cliente_nombre":cliente_nombre})
+ 
+
+def agregarclientes(request):
+
+    if request.method == 'POST':
+        formulario=ClienteForm(request.POST)
+        if formulario.is_valid():
+            informacion=formulario.cleaned_data
+            cliente = Clientes(codigo_cliente=informacion['codigo_cliente'], nombre=informacion['nombre'], email=informacion['email'])
+            cliente.save()
+            return render(request,"AppBanco/inicio.html")
+    else:
+        formulario=ClienteForm()
+    return render(request,"AppBanco/agregarcliente.html",{'formulario':formulario})

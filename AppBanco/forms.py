@@ -28,6 +28,7 @@ class RegistrationForm(UserCreationForm):
     password1=forms.CharField(label='Contraseña')
     password2=forms.CharField(label='Repetir contraseña')
 
+
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']

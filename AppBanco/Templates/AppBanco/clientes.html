@@ -7,15 +7,18 @@
     <title>PAGINA DE CLIENTES</title>
 </head>
 <body>
-    <h1>PAGINA DE CLIENTES</h1>
+    <h1>ALTA DE CLIENTES</h1>
 
     <form action="{% url 'clientes' %}" method="POST">{% csrf_token %}
 
         <table>
             {{formulario.as_table}}        
         </table>
-        <input type="submit" value="ENVIAR">    
-
+        <input type="submit" value="ENVIAR"> 
+        <p></p>
+        <a href="leerclientes"> Ver clientes existentes</a>  
+        <p></p>
+        <a href="inicio"> Ir a Inicio</a>
     </form>
 
 </body>

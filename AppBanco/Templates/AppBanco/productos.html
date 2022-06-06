@@ -7,7 +7,7 @@
     <title>PAGINA DE PRODUCTOS</title>
 </head>
 <body>
-    <h1>PAGINA DE PRODUCTOS</h1>
+    <h1>ALTA DE PRODUCTOS</h1>
 
     <form action="{% url 'productos' %}" method="POST">{% csrf_token %}
 
@@ -15,7 +15,8 @@
             {{formulario.as_table}}        
         </table>
         <input type="submit" value="ENVIAR">    
-
+        <p></p>
+        <a href="inicio"> Ir a Inicio</a>
     </form>
 
 </body>
