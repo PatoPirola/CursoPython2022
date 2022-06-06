@@ -9,7 +9,7 @@ para grabar datos en la BD. Cada uno tiene herencia de HTML.
 luego se debe colocar un número de código de cliente, ej: 9999.
 - Los resultados de la búsqueda son arrojados en el resuldatoCliente.html, si no se ingresa un código, 
 debe aparecer una respuesta en rojo.
--Todos los métodos fueron generados en el archivo views.py de AppBanco.
+- Todos los métodos fueron generados en el archivo views.py de AppBanco.
 
 
 
