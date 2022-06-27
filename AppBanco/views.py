@@ -13,10 +13,23 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+#def inicio(request):
+#    if request.user.is_authenticated:
+#        print("--------------> User is authenticated")
+#    return render(request,'AppBanco/inicio.html')
+    #avatar = Avatar.objects.filter(user=request.user)
+    #return render(request,'AppBanco/inicio.html' ,{'url':avatar[0].imagen.url})
+
 def inicio(request):
+
     if request.user.is_authenticated:
-        print("--------------> User is authenticated")
-    return render(request,"AppBanco/inicio.html")
+        avatar = Avatar.objects.filter(user=request.user.id)
+        if not avatar:
+            return render(request,"AppBanco/inicio.html")
+        else:
+            return render(request,'AppBanco/inicio.html' ,{'url':avatar[0].imagen.url})
+    else:
+        return render(request,"AppBanco/inicio.html")
 
 def clientes(request):
 
@@ -181,3 +194,31 @@ def agregarclientes(request):
     else:
         formulario=ClienteForm()
     return render(request,"AppBanco/agregarcliente.html",{'formulario':formulario})
+
+
+@login_required
+def editarperfil(request):
+
+    
+    usuario = request.user
+
+    if request.method == "POST":
+        formulario = UserEditForm(request.POST)
+        if formulario.is_valid():
+            informacion=formulario.cleaned_data
+
+            usuario.email = informacion['email']
+            usuario.password1 = informacion['password1']
+            usuario.password2 = informacion['password2']
+            usuario.save()
+
+            return render(request, "AppBanco/inicio.html")
+    else:
+        formulario = UserEditForm(initial={ 'email':usuario.email})
+
+    return render(request, "AppBanco/editarperfil.html", {"formulario":formulario, "usuario":usuario})
+
+
+
+def about(request):
+    return render(request,"AppBanco/about.html")

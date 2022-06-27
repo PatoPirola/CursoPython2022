@@ -1,6 +1,9 @@
 import email
 from mailbox import NoSuchMailboxError
+from pyexpat import model
+from tkinter import image_names
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Clientes(models.Model):
@@ -26,3 +29,7 @@ class Sucursales(models.Model):
 
     def __str__(self):
         return self.sucursal
+
+class Avatar(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    imagen = models.ImageField(upload_to='avatar', null=True, blank=True)

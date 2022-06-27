@@ -1,5 +1,8 @@
 from django import views
-from django.urls import path
+from django.urls import path, include
+
+from chat.views import index
+
 from .views import * 
 from django.contrib.auth.views import LoginView, LogoutView
 
@@ -22,4 +25,7 @@ urlpatterns = [
     path('sucursales/inicio', inicio, name='inicio'),
     path('clientes/leerclientes', leerclientes, name='leerclientes'),
     path('clientes/agregarcliente', agregarclientes, name='agregarclientes'),
+    path('editarperfil', editarperfil, name='editarperfil'),
+    path('about', about, name='about'),
+    path('chat', index, name='chat')    
 ]

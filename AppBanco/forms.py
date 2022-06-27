@@ -33,3 +33,15 @@ class RegistrationForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2']
         help_texts = {k:"" for k in fields}
+
+
+class UserEditForm(UserCreationForm):
+    email = forms.EmailField(label="Modificar Email")
+    password1=forms.CharField(label='Modificar Contraseña')
+    password2=forms.CharField(label='Repetir contraseña')
+
+    class Meta:
+        model = User
+        fields = ['email', 'password1', 'password2']
+        help_texts = {k:"" for k in fields}
+
