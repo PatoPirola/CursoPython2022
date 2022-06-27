@@ -1,9 +1,12 @@
-# Proyecto Curso Python 2022 - Mantenedor de Dimensiones Web
+Mantenedor de Dimensiones Web
 
-## Contenido
+Alcance MVP:
 - Se desarrollaron tres modelos/entidades: cliente, producto y sucursal.
 - Se crearon/configuraron formularios, views, templates, herencias, urls para acceder a todas las utilidades de la web.
 - Se desarrolló un CRUD completo para la entidad Cliente, sumando también la funcionalidad de Add.
 - Se desarrollaron las funcionalidades de login, logout y registro de usuario, a su vez se creó el acceso para editar el perfil.
 - Se puede modificar o agregar avatar con el usuario admin (usuario:admin; clave: faiton11).
 - Se desarrolló un chat como canal de mensajería entre usuarios.
+
+Para ampliar sobre esta solución, lo invitamos a consultar la siguiente presentación:
+https://docs.google.com/presentation/d/1OdMOecAyQrLN_1fGnV60EgEJK5GBVTFU3J4_LUw_J7M/edit?usp=sharing
