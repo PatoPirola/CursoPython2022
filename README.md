@@ -8,7 +8,7 @@ Alcance MVP:
 - Se puede modificar o agregar avatar con el usuario admin (usuario:admin; clave: faiton11).
 - Se desarrolló un chat como canal de mensajería entre usuarios.
 
-Para ampliar sobre esta solución, lo invitamos a consultar la siguiente presentación:
+Para mayor detalle acerca de esta solución, te invitamos a leernos:
 https://docs.google.com/presentation/d/1OdMOecAyQrLN_1fGnV60EgEJK5GBVTFU3J4_LUw_J7M/edit?usp=sharing
 
 O sino, podes ver la aplicación corriendo en el siguiente video:
