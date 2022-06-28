@@ -10,3 +10,6 @@ Alcance MVP:
 
 Para ampliar sobre esta solución, lo invitamos a consultar la siguiente presentación:
 https://docs.google.com/presentation/d/1OdMOecAyQrLN_1fGnV60EgEJK5GBVTFU3J4_LUw_J7M/edit?usp=sharing
+
+O sino, podes ver la aplicación corriendo en el siguiente video:
+https://drive.google.com/file/d/1NQpMmCBd7Wo4_Ox4xOXdBkjr8P06MNg4/view?usp=sharing
